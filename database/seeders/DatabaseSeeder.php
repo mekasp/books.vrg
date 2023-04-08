@@ -14,10 +14,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $books = Book::factory(20)->create();
-        $authors = Author::factory(10)->make()->each(function ($author) use ($books) {
-            $author->book_id = $books->random()->id;
-            $author->save();
+        $books = Book::factory(100)->create();
+        $authors = Author::factory(100)->create();
+
+        $books->each(function ($book) use ($authors) {
+            $book->authors()->attach($authors->random(rand(1, 2))->pluck('id'));
         });
     }
 }
