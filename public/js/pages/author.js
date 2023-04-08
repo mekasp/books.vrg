@@ -130,15 +130,16 @@ $(document).ready(function($){
                     middle_name = obj.middle_name;
                 }
 
-                var author = '<tr id="author' + obj.id + '">' +
-                    '<td>' + obj.id + '</td>' +
-                    '<td>' + obj.surname + '</td>' +
-                    '<td>' + obj.name + '</td>' +
-                    '<td>' + middle_name + '</td>' +
-                    '<td><button class="open-update-modal" id="btn-update" value="' + obj.id + '">Edit</button></td>' +
-                    '<td><button class="deleteAuthor" id="btn-delete"  value="' + obj.id + '">Delete</button></td></tr>';
+                var author = [
+                    obj.id,
+                    obj.surname,
+                    obj.name,
+                    middle_name,
+                    '<button class="open-update-modal" id="btn-update" value="' + obj.id + '">Edit</button>',
+                    '<button class="deleteAuthor" id="btn-delete"  value="' + obj.id + '">Delete</button>'
+                ];
 
-                $("#author-list #author" + obj.id).replaceWith(author)
+                t.row($("#author-list #author" + obj.id)).data(author).draw();
 
                 $('#updateForm').trigger("reset");
                 $('#updateModal').modal('hide')

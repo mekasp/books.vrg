@@ -184,19 +184,21 @@ $(document).ready(function($){
                 var slicedTime = date.slice(11, 19)
                 var dateTime = slicedDate + ' ' + slicedTime
 
-                var book = '<tr id="book' + obj[0].id + '">' +
-                            '<td>' + obj[0].id + '</td>' +
-                            image +
-                            '<td>' + obj[0].title + '</td>' +
-                            '<td>' + desc + '</td>' +
-                            '<td>' + authors.join(',') + '</td>' +
-                            '<td>' + dateTime + '</td>' +
-                            '<td><button class="open-update-modal" id="btn-update" value="' + obj[0].id + '">Edit</button></td>' +
-                            '<td><button class="deleteBook" id="btn-delete" value="' + obj[0].id + '">Delete</button></td></tr>';
-
                 var id = obj[0].id;
 
-                $("#books-list #book" + id).replaceWith(book)
+                var book = [
+                    id,
+                    image,
+                    obj[0].title,
+                    desc,
+                    authors.join(','),
+                    dateTime,
+                    '<button class="open-update-modal" id="btn-update" value="' + obj[0].id + '">Edit</button>',
+                    '<button class="deleteBook" id="btn-delete" value="' + obj[0].id + '">Delete</button>'
+                ];
+
+
+                t.row($("#books-list #book" + id)).data(book).draw();
 
                 $('#updateForm').trigger("reset");
                 $('#updateModal').modal('hide')
