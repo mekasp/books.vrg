@@ -67,6 +67,11 @@ $(document).ready(function($){
                         image = '<td><img style="height: 100px; width: 100px;" src="storage/books/' + obj[0].image + '"></td>';
                     }
 
+                    var desc = obj[0].description;
+                    if (desc == null) {
+                        desc = '';
+                    }
+
                     var date = obj[0].created_at
                     var slicedDate = date.slice(0, 10)
                     var slicedTime = date.slice(11, 19)
@@ -76,7 +81,7 @@ $(document).ready(function($){
                         '<td>' + obj[0].id + '</td>' +
                         image +
                         '<td>' + obj[0].title + '</td>' +
-                        '<td>' + obj[0].description + '</td>' +
+                        '<td>' + desc + '</td>' +
                         '<td>' + authors.join(',') + '</td>' +
                         '<td>' + dateTime + '</td>' +
                         '<td><button class="open-update-modal" id="btn-update" value="' + obj[0].id + '">Edit</button></td>' +
